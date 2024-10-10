@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     void movePlayer()
     {
-        direction = new Vector3(horizontalInput, 0, verticalInput);
+        direction = transform.forward * verticalInput + transform.right * horizontalInput;
         _rb.AddForce(direction * speed * Time.deltaTime, ForceMode.VelocityChange);
     }
 }
