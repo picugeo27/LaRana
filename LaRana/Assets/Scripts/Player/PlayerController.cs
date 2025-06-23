@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private float floorDistance = 0.1f;
     public LayerMask layerFloor;
 
+    public bool controlEnabled;
+
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
@@ -43,8 +45,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!controlEnabled) return;
         Walk();
         Jump();
+
     }
 
     private void Walk()
@@ -84,5 +88,10 @@ public class PlayerController : MonoBehaviour
         }
         _speed.y += _gravity * Time.deltaTime;
         _controller.Move(_speed * Time.deltaTime);
+    }
+
+    public void EnableControl(bool enabled)
+    {
+        controlEnabled = enabled;
     }
 }
